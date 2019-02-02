@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_atec_hr_atec_hr,atec_hr.atec_hr,model_atec_hr_atec_hr,,1,0,0,0

@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="atec_hr.list">
+      <field name="name">atec_hr list</field>
+      <field name="model">atec_hr.atec_hr</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="atec_hr.action_window">
+      <field name="name">atec_hr window</field>
+      <field name="res_model">atec_hr.atec_hr</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="atec_hr.action_server">
+      <field name="name">atec_hr server</field>
+      <field name="model_id" ref="model_atec_hr_atec_hr"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="atec_hr" id="atec_hr.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="atec_hr.menu_1" parent="atec_hr.menu_root"/>
+    <menuitem name="Menu 2" id="atec_hr.menu_2" parent="atec_hr.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="atec_hr.menu_1_list" parent="atec_hr.menu_1"
+              action="atec_hr.action_window"/>
+    <menuitem name="Server to list" id="atec_hr" parent="atec_hr.menu_2"
+              action="atec_hr.action_server"/>
+    -->
+  </data>
+</odoo>
