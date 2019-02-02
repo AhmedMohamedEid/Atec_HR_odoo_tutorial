@@ -1,60 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="atec_hr.list">
-      <field name="name">atec_hr list</field>
-      <field name="model">atec_hr.atec_hr</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="atec_hr.action_window">
-      <field name="name">atec_hr window</field>
-      <field name="res_model">atec_hr.atec_hr</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+       <record id="view_atec_employee_form" model="ir.ui.view">
+           <field name="name">view.atec.employee.form</field>
+           <field name="model">atec.employee</field>
+           <field name="arch" type="xml">
+               <form string="Atec Employee Form">
+                   <sheet>
+                       <group>
+                           <field name="name"/>
+                           <field name="email"/>
+                           <field name="marital_status" widget="radio"/>
+                       </group>
+                   </sheet>
+               </form>
+           </field>
+       </record>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="atec_hr.action_server">
-      <field name="name">atec_hr server</field>
-      <field name="model_id" ref="model_atec_hr_atec_hr"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+        <record id="view_atec_employee_tree" model="ir.ui.view">
+            <field name="name">view.atec.employee.tree</field>
+            <field name="model">atec.employee</field>
+            <field name="arch" type="xml">
+                <tree string="Atec Employee Tree">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="marital_status"/>
+                </tree>
+            </field>
+        </record>
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="atec_hr" id="atec_hr.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="atec_hr.menu_1" parent="atec_hr.menu_root"/>
-    <menuitem name="Menu 2" id="atec_hr.menu_2" parent="atec_hr.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="atec_hr.menu_1_list" parent="atec_hr.menu_1"
-              action="atec_hr.action_window"/>
-    <menuitem name="Server to list" id="atec_hr" parent="atec_hr.menu_2"
-              action="atec_hr.action_server"/>
-    -->
-  </data>
+        <record id="action_view_atec_employee" model="ir.actions.act_window">
+            <field name="name">Employee</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">atec.employee</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="menu_atec_hr" name="Atec HR" sequence="1"/>
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="menu_categ_atec_hr" name="Atec HR" parent="menu_atec_hr" sequence="1"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_atec_employee" name="Employee" parent="menu_categ_atec_hr" action="action_view_atec_employee" sequence="1"/>
+    </data>
 </odoo>

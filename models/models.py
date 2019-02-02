@@ -2,14 +2,11 @@
 
 from odoo import models, fields, api
 
-# class atec_hr(models.Model):
-#     _name = 'atec_hr.atec_hr'
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
+class AtecEmployee(models.Model):
+    _name = 'atec.employee' # Creates a table with name 'atec_employee'
+    _description = 'Atec Employee'
+
+    name = fields.Char(string='Employee Name', required=True, )
+    email = fields.Char(string="Email", required=True)
+    marital_status = fields.Selection(string="Marital status", selection=[('m', 'Married'), ('s', 'Single')], default='s')
