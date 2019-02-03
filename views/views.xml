@@ -14,14 +14,25 @@
                                <field name="name" placeholder="Atec Employee"/>
                            </h1>
                        </div>
+                       <field name="image" readonly="0" widget='image' class="oe_right oe_avatar" options='{"preview_image": "image_medium"}'/>
                        <group>
                            <group>
                                <field name="email" widget="email"/>
+                               <field name="phone" widget="phone"/>
+                               <field name="website" widget="url"/>
                            </group>
                            <group>
                               <field name="marital_status" widget="radio"/>
+                              <field name="birth_date"/>
                            </group>
                        </group>
+                       <notebook>
+                           <page string="Relatives">
+                               <group string="Relatives">
+                                   <field name="relative_ids" nolabel="1"/>
+                               </group>
+                           </page>
+                       </notebook>
                    </sheet>
                    <div class="oe_chatter">
                        <field name="message_follower_ids" widget="mail_followers"/>
