@@ -8,10 +8,19 @@
            <field name="arch" type="xml">
                <form string="Atec Employee Form">
                    <sheet>
+                       <div class="oe_title">
+                           <label for="name" class="oe_edit_only"/>
+                           <h1>
+                               <field name="name" placeholder="Atec Employee"/>
+                           </h1>
+                       </div>
                        <group>
-                           <field name="name"/>
-                           <field name="email"/>
-                           <field name="marital_status" widget="radio"/>
+                           <group>
+                               <field name="email" widget="email"/>
+                           </group>
+                           <group>
+                              <field name="marital_status" widget="radio"/>
+                           </group>
                        </group>
                    </sheet>
                    <div class="oe_chatter">
