@@ -1,30 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!--  -->
-        <!--   <record id="object0" model="atec_hr.atec_hr"> -->
-        <!--     <field name="name">Object 0</field> -->
-        <!--     <field name="value">0</field> -->
-        <!--   </record> -->
-        <!--  -->
-        <!--   <record id="object1" model="atec_hr.atec_hr"> -->
-        <!--     <field name="name">Object 1</field> -->
-        <!--     <field name="value">10</field> -->
-        <!--   </record> -->
-        <!--  -->
-        <!--   <record id="object2" model="atec_hr.atec_hr"> -->
-        <!--     <field name="name">Object 2</field> -->
-        <!--     <field name="value">20</field> -->
-        <!--   </record> -->
-        <!--  -->
-        <!--   <record id="object3" model="atec_hr.atec_hr"> -->
-        <!--     <field name="name">Object 3</field> -->
-        <!--     <field name="value">30</field> -->
-        <!--   </record> -->
-        <!--  -->
-        <!--   <record id="object4" model="atec_hr.atec_hr"> -->
-        <!--     <field name="name">Object 4</field> -->
-        <!--     <field name="value">40</field> -->
-        <!--   </record> -->
-        <!--  -->
+
+           <record id="atec_emp_1" model="atec.employee">
+             <field name="name">Ahmed Eid</field>
+             <field name="email">xyz@abc.com</field>
+             <field name="marital_status">s</field>
+           </record>
+
     </data>
 </odoo>
