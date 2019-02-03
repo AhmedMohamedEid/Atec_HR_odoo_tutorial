@@ -9,12 +9,12 @@ class AtecEmployee(models.Model):
     _description = 'Atec Employee'
     _inherit = ['mail.thread']
 
-    name = fields.Char(string='Employee Name', required=True, )
+    name = fields.Char(string='Employee Name', required=True, track_visibility="always", )
     email = fields.Char(string="Email", required=True)
     marital_status = fields.Selection(string="Marital status", selection=[('m', 'Married'), ('s', 'Single')], default='s')
     birth_date = fields.Date(string="Birth Date", default=fields.Date.today, )
     website = fields.Char(string="Website", required=False, )
-    phone = fields.Char(string="Phone", required=False, )
+    phone = fields.Char(string="Phone", required=False, track_visibility='onchange')
     relative_ids = fields.One2many(comodel_name="res.partner", inverse_name="atec_emp_id", string="Relatives", required=False, )
     image = fields.Binary(string="Image", attachment=True, store=True, )
 
