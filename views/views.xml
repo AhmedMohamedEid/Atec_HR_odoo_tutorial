@@ -21,9 +21,9 @@
                        <field name="image" readonly="0" widget='image' class="oe_right oe_avatar" options='{"preview_image": "image_medium"}'/>
                        <group>
                            <group>
-                               <field name="email" widget="email"/>
-                               <field name="phone" widget="phone"/>
-                               <field name="website" widget="url"/>
+                               <field name="email" widget="email" readonly="0"/>
+                               <field name="phone" widget="phone" required="0"/>
+                               <field name="website" widget="url" attrs="{'required': [('marital_status', '=', 'm')]}"/>
                            </group>
                            <group>
                               <field name="marital_status" widget="radio"/>
@@ -51,6 +51,7 @@
             <field name="model">atec.employee</field>
             <field name="arch" type="xml">
                 <tree string="Atec Employee Tree">
+                <!--<tree string="Atec Employee Tree" editable="bottom|top">-->
                     <field name="name"/>
                     <field name="email"/>
                     <field name="marital_status"/>
@@ -62,6 +63,7 @@
             <field name="name">Employee</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">atec.employee</field>
+            <field name="context">{'standard_na': True, 'default_email': '@atec.com'}</field>
             <field name="view_mode">tree,form</field>
         </record>
 
@@ -71,5 +73,26 @@
         <menuitem id="menu_categ_atec_hr" name="Atec HR" parent="menu_atec_hr" sequence="1"/>
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="menu_atec_employee" name="Employee" parent="menu_categ_atec_hr" action="action_view_atec_employee" sequence="1"/>
+
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="view_partner_atec_emp_inherit_form" model="ir.ui.view">
+            <field name="name">Partner Emp Inheritance</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <!--<xpath expr="//field[@name='category_id']" position="before|after|inside|attributes|replace">-->
+                <xpath expr="//field[@name='category_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='category_id']" position="before">
+                    <field name="atec_emp_id" context="{'default_name': 'TYUIOP', 'standard_na': True}"/>
+                </xpath>
+
+            </field>
+        </record>
+
     </data>
 </odoo>

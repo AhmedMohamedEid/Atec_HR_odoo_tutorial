@@ -54,9 +54,20 @@ class AtecEmployee(models.Model):
         if self.email:
             self.website = 'http://%s' % self.email.split('@')[1]
 
+    @api.multi
+    def name_get(self):
+        res = []
+        if self._context.get('standard_na'):
+            return super(AtecEmployee, self).name_get()
+
+        for emp in self:
+            res.append((emp.id, "%s (%s)" % (emp.name, emp.email)))
+        return res
+
 
 class Partner(models.Model):
     _name = 'res.partner'
     _inherit = 'res.partner'
 
     atec_emp_id = fields.Many2one(comodel_name="atec.employee", string="", required=False, )
+    company_type = fields.Selection(selection_add=[('shop', 'Shop')], default='shop', )
