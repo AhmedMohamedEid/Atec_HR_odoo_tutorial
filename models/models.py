@@ -8,6 +8,7 @@ class AtecEmployee(models.Model):
     _name = 'atec.employee' # Creates a table with name 'atec_employee'
     _description = 'Atec Employee'
     _inherit = ['mail.thread']
+    _rec_name = 'name'
 
     name = fields.Char(string='Employee Name', required=True, track_visibility="always", )
     email = fields.Char(string="Email", required=True)
