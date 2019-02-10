@@ -8,13 +8,14 @@
            <field name="arch" type="xml">
                <form string="Atec Employee Form">
                    <sheet>
+                       <field name="image" readonly="0" widget='image' class="oe_avatar" options='{"preview_image": "image_medium"}'/>
                        <div class="oe_title">
                            <label for="name" class="oe_edit_only"/>
                            <h1>
                                <field name="name" placeholder="Atec Employee"/>
                            </h1>
                        </div>
-                       <field name="image" readonly="0" widget='image' class="oe_right oe_avatar" options='{"preview_image": "image_medium"}'/>
+
                        <group>
                            <group>
                                <field name="email" widget="email"/>
