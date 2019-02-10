@@ -18,10 +18,18 @@ class AtecEmployee(models.Model):
     phone = fields.Char(string="Phone", required=False, track_visibility='onchange')
     relative_ids = fields.One2many(comodel_name="res.partner", inverse_name="atec_emp_id", string="Relatives", required=False, )
     image = fields.Binary(string="Image", attachment=True, store=True, )
+    state = fields.Selection(string="Status", selection=[('rp', 'Recruitment Process'), ('emp', 'Employee'),
+                                                         ('left', 'Left')], default='rp', track_visibility='onchange')
 
     _sql_constraints = [
         ('atec_emp_unique_email', 'unique(email)', 'Emails should be unique!')
     ]
+
+    @api.multi
+    def button_leave(self):
+        self.state = 'left'
+        print(fields.Datetime.now())
+        print(fields.Datetime.context_timestamp(self, fields.Datetime.from_string(fields.Datetime.now())))
 
     @api.constrains('email')
     def check_email(self):
