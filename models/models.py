@@ -2,7 +2,7 @@
 
 from odoo import models, fields, api
 from odoo.exceptions import UserError
-
+from  odoo.tools import image_resize_images
 
 
 
@@ -19,9 +19,32 @@ class AtecEmployee(models.Model):
     website = fields.Char(string="Website", required=False, )
     phone = fields.Char(string="Phone", required=False, track_visibility='onchange')
     relative_ids = fields.One2many(comodel_name="res.partner", inverse_name="atec_emp_id", string="Relatives", required=False, )
-    image = fields.Binary(string="Image", attachment=True, store=True, )
+    # image = fields.Binary(string="Image", attachment=True,)
+    # image_medium = fields.Binary(string="Image", attachment=True, )
     state = fields.Selection(string="Status", selection=[('rp', 'Recruitment Process'), ('emp', 'Employee'),
                                                          ('left', 'Left')], default='rp', track_visibility='onchange')
+
+    image = fields.Binary(attachment=True,
+                          help="This field holds the image used as image for the cateogry, limited to 1024x1024px.")
+    image_medium = fields.Binary(string="Medium-sized image", attachment=True,
+                                 help="Medium-sized image of the category. It is automatically "
+                                      "resized as a 128x128px image, with aspect ratio preserved. "
+                                      "Use this field in form views or some kanban views.")
+    image_small = fields.Binary(string="Small-sized image", attachment=True,
+                                help="Small-sized image of the category. It is automatically "
+                                     "resized as a 64x64px image, with aspect ratio preserved. "
+                                     "Use this field anywhere a small image is required.")
+
+    @api.model
+    def create(self, vals):
+        image_resize_images(vals)
+        return super(AtecEmployee, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        image_resize_images(vals)
+        return super(AtecEmployee, self).write(vals)
+
 
     # print(image)
     _sql_constraints = [
